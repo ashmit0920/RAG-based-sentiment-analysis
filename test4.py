@@ -7,5 +7,5 @@ from transformers import pipeline
 
 pipe = pipeline("sentiment-analysis") # defaults to distilbert llm
 
-# out = pipe("It was a bad store.")
-# print(out[0])
+# out = pipe(inputs=["It was a bad store.", "It was a good store"])
+# print(out)
