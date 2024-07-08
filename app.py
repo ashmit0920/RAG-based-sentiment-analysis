@@ -1,5 +1,5 @@
 import streamlit as st
-from test4 import pipe
+from test4 import sentiment_pipe
 import pandas as pd
 import time
 import altair as alt
@@ -11,7 +11,7 @@ st.title(":blue[Sentiment Analysis] Dashboard")
 text = st.text_area("Enter text to be analyzed:")
 
 if st.button("Analyze"):
-    out = pipe(text)
+    out = sentiment_pipe(text)
     st.write(f"The sentiment of this statement is **{out[0]['label']}**.")
 
 # allow csv uploads and analyze it
@@ -26,7 +26,7 @@ if user_file:
 
         data = pd.read_csv(user_file)
         data.columns = ["Reviews"]
-        output = pipe([review for review in data['Reviews']])
+        output = sentiment_pipe([review for review in data['Reviews']])
         
         pos_count, neg_count = 0, 0
         for review in output:

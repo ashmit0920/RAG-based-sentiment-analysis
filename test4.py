@@ -1,11 +1,11 @@
-from transformers import pipeline
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
-# model_id = "meta-llama/Meta-Llama-3-8B"
+model = "facebook/bart-large-cnn"
 
-# tokenizer = AutoTokenizer.from_pretrained(model_id)
-# model = AutoModelForCausalLM.from_pretrained(model_id)
+tokenizer = AutoTokenizer.from_pretrained(model)
 
-pipe = pipeline("sentiment-analysis") # defaults to distilbert llm
+sentiment_pipe = pipeline("sentiment-analysis") # defaults to distilbert llm
+summary_pipe = pipeline("summarization", model=model, tokenizer=tokenizer)
 
 # out = pipe(inputs=["It was a bad store.", "It was a good store"])
 # print(out)
